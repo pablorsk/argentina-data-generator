@@ -1,0 +1,18 @@
+includes:
+	- ../../vendor/phpstan/phpstan-strict-rules/rules.neon
+	- ../../vendor/phpstan/phpstan-phpunit/extension.neon
+	- ../../vendor/phpstan/phpstan-phpunit/rules.neon
+	- ../../vendor/phpstan/phpstan-phpunit/strictRules.neon
+	- ../../vendor/weebly/phpstan-laravel/extension.neon
+
+parameters:
+	bootstrap: %rootDir%/../../../resources/ci/tools/phpstan/bootstrap.php
+	ignoreErrors:
+		- '#Parameter \#2 \$delimiters of function League\\Csv\\delimiter_detect expects array<string>, array<int, array|string> given.#'
+		- '#Access to an undefined property .+::\$response\.#'
+		- '#Access to an undefined property.+Eloquent.+#'
+		- '#Accessing property.+Eloquent.+#'
+		- '#Static call to instance method.+#'
+		- '#Call to an undefined method.+Eloquent.+#'
+		- '#Calling method save\(\) on possibly null value of type.+#'
+	reportUnmatchedIgnoredErrors: false
