@@ -11,52 +11,43 @@ declare(strict_types=1);
 namespace Tests;
 
 use ArgentinaDataGenerator\CuitFakerProvider;
+use PHPUnit\Framework\TestCase;
 
-class CuitFakerProviderTest extends PHPUnit\Framework\TestCase
+class CuitFakerProviderTest extends TestCase
 {
-    public function testText(): void
+    public function testCuit(): void
     {
-        $generator = new CuitFakerProvider();
-        $this->assertNotEmpty($generator->generateText());
-        $this->assertSame(300, strlen($generator->generateText(300)));
+        $generator = new CuitFakerProvider(\Faker\Factory::create());
+        for ($i = 0; $i < 100; ++$i) {
+            $this->assertRegExp('/[20|27|33]\-[0-9]{8}\-[0-9]/', $generator::cuit());
+        }
     }
 
-    public function testWord(): void
+    public function testCuitNumber(): void
     {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateWord());
+        $generator = new CuitFakerProvider(\Faker\Factory::create());
+        for ($i = 0; $i < 100; ++$i) {
+            $cuit = $generator::cuitNumber();
+            $this->assertTrue($this->isValidCuit($cuit), 'bad cuit: ' . $cuit);
+        }
     }
 
-    public function testWords(): void
+    private function isValidCuit(int $number_cuit): bool
     {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateWords());
-        $this->assertCount(5, $generator->generateWords(5));
-    }
+        $cuit = (string) $number_cuit;
 
-    public function testSentence(): void
-    {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateSentence());
-    }
+        if (strlen($cuit) !== 11) {
+            return false;
+        }
 
-    public function testSentences(): void
-    {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateSentences());
-        $this->assertCount(5, $generator->generateSentences(5));
-    }
+        $result = 0;
+        for ($i = 0; $i <= 9; ++$i) {
+            $result += $cuit[9 - $i] * (2 + ($i % 6));
+        }
 
-    public function testParagraph(): void
-    {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateParagraph());
-    }
+        $checksum = 11 - ($result % 11);
+        $checksum = $checksum == 11 ? 0 : $checksum;
 
-    public function testParagraphs(): void
-    {
-        $generator = new \NewAgeIpsum\Generator();
-        $this->assertNotEmpty($generator->generateParagraphs());
-        $this->assertCount(7, $generator->generateParagraphs(7));
+        return $checksum == $cuit[-1];
     }
 }

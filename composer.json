@@ -71,7 +71,7 @@
         ],
         "phpstan-src": "./vendor/bin/phpstan analyse -l 7 -c resources/ci/.phpstan.src.neon src",
         "phpstan-src-TODO": "./vendor/bin/phpstan analyse -l 7 -c resources/ci/.phpstan.src.neon src tests/dummy",
-        "phpstan-tests": "./vendor/bin/phpstan analyse -l 7 -c resources/ci/.phpstan.tests.neon tests/lib",
+        "phpstan-tests": "./vendor/bin/phpstan analyse -l 7 -c resources/ci/.phpstan.tests.neon tests",
 
         "ide-helper": [
             "# php artisan ide-helper:meta --filename=bootstrap/cache/.phpstorm.meta.php",

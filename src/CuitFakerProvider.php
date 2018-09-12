@@ -14,23 +14,54 @@ use Faker\Provider\Base;
 
 class CuitFakerProvider extends Base
 {
-    protected static $techTerms = ['AddOn', 'Algorithm', 'Architect', 'Array', 'Asynchronous', 'Avatar', 'Band', 'Base', 'Beta', 'Binary', 'Blog', 'Board', 'Boolean', 'Boot', 'Bot', 'Browser', 'Bug', 'Cache', 'Character', 'Checksum', 'Chip', 'Circuit', 'Client', 'Cloud', 'Cluster', 'Code', 'Codec', 'Coder', 'Column', 'Command', 'Compile', 'Compression', 'Computing', 'Console', 'Constant', 'Control', 'Cookie', 'Core', 'Cyber', 'Default', 'Deprecated', 'Dev', 'Developer', 'Development', 'Device', 'Digital', 'Domain', 'Dynamic', 'Emulation', 'Encryption', 'Engine', 'Error', 'Exception', 'Exploit', 'Export', 'Extension', 'File', 'Font', 'Fragment', 'Frame', 'Function', 'Group', 'Hacker', 'Hard', 'HTTP', 'Icon', 'Input', 'IT', 'Kernel', 'Key', 'Leak', 'Link', 'Load', 'Logic', 'Mail', 'Mashup', 'Mega', 'Meme', 'Memory', 'Meta', 'Mount', 'Navigation', 'Net', 'Node', 'Open', 'OS', 'Output', 'Over', 'Packet', 'Page', 'Parallel', 'Parse', 'Path', 'Phone', 'Ping', 'Pixel', 'Port', 'Power', 'Programmers', 'Programs', 'Protocol', 'Push', 'Query', 'Queue', 'Raw', 'Real', 'Repository', 'Restore', 'Root', 'Router', 'Run', 'Safe', 'Sample', 'Scalable', 'Script', 'Server', 'Session', 'Shell', 'Smart', 'Socket', 'Soft', 'Solid', 'Sound', 'Source', 'Streaming', 'Symfony', 'Syntax', 'System', 'Tag', 'Tape', 'Task', 'Template', 'Thread', 'Token', 'Tool', 'Tweak', 'URL', 'Utility', 'Viral', 'Volume', 'Ware', 'Web', 'Wiki', 'Window', 'Wire'];
-
-    protected static $culinaryTerms = ['Appetit', 'Bake', 'Beurre', 'Bistro', 'Blend', 'Boil', 'Bouchees', 'Brew', 'Buffet', 'Caffe', 'Caffeine', 'Cake', 'Carve', 'Caviar', 'Chef', 'Chocolate', 'Chop', 'Citrus', 'Cocoa', 'Compote', 'Cook', 'Cooker', 'Cookery', 'Cool', 'Core', 'Coulis', 'Course', 'Crouton', 'Cuisine', 'Dash', 'Dessert', 'Dip', 'Dish', 'Dress', 'Entree', 'Espresso', 'Extracts', 'Fajitas', 'Fibers', 'Fold', 'Formula', 'Fruit', 'Fumet', 'Fusion', 'Gastronomy', 'Glucose', 'Gourmet', 'Grains', 'Gratin', 'Greens', 'Guacamole', 'Herbs', 'Honey', 'Hybrid', 'Ice', 'Icing', 'Immersion', 'Induction', 'Instant', 'Jasmine', 'Jelly', 'Juice', 'Kiwi', 'Lean', 'Leek', 'Legumes', 'Lemon', 'Lime', 'Liqueur', 'Madeleine', 'Mango', 'Marinate', 'Melon', 'Mill', 'Mince', 'Mirepoix', 'Mix', 'Mousse', 'Muffin', 'Mull', 'Munster', 'Nectar', 'Nut', 'Olive', 'Organic', 'Organic', 'Pan', 'Papillote', 'Pare', 'Pasta', 'Pate', 'Peanut', 'Pear', 'Pesto', 'Picante', 'Pie', 'Pigment', 'Pinot', 'Plate', 'Plum', 'Pod', 'Prepare', 'Pressure', 'Pudding', 'Pulp', 'Quiche', 'Rack', 'Raft', 'Raisin', 'Recipe', 'Reduce', 'Relish', 'Render', 'Risotto', 'Rosemary', 'Roux', 'Rub', 'Salad', 'Salsa', 'Sauce', 'Sauté', 'Season', 'Slice', 'Smoked', 'Soft', 'Sorbet', 'Soup', 'Spaghetti', 'Specialty', 'Spicy', 'Splash', 'Steam', 'Stem', 'Sticky', 'Stuff', 'Sugar', 'Supreme', 'Sushi', 'Sweet', 'Table', 'Tart', 'Taste', 'Tasting', 'Tea', 'Tender', 'Terrine', 'Tomato', 'Vanilla', 'Wash', 'Wax', 'Wine', 'Wok', 'Zest'];
-
-    protected static $companyNameFormats = [
-        '{{techTerm}}{{culinaryTerm}}',
-        '{{techTerm}}{{techTerm}}',
-        '{{culinaryTerm}}{{techTerm}}',
-    ];
-
-    public static function invalidCuit()
+    public static function dni(): int
     {
-        return 'x';
+        return random_int(10000000, 99999999);
     }
 
-    public function cuit()
+    public static function cuitNumber(): int
     {
-        return 'e';
+        return (int) str_replace('-', '', static::cuit());
+    }
+
+    public static function cuit(): string
+    {
+        $dni = (string) static::dni();
+        $genders = ['male', 'female', 'society'];
+        $gender = $genders[array_rand($genders, 1)];
+
+        switch ($gender) {
+            case 'male':
+                $AB = '20';
+                break;
+            case 'female':
+                $AB = '27';
+                break;
+            default:
+                $AB = '33';
+                break;
+        }
+
+        $calc = $AB[0] * 5 + $AB[1] * 4;
+
+        $multipliers = [3, 2, 7, 6, 5, 4, 3, 2];
+        for ($i = 0; $i < 8; ++$i) {
+            $calc += $dni[$i] * $multipliers[$i];
+        }
+
+        $Z = 11 - ($calc % 11);
+
+        // Si el resultado es 10, no existe, es un error. Se debe cambiar el tipo a 23 o 33 y recalcular.
+        // Algunos algoritmos verifican erróneamente con 9 sin cambiar el tipo, lo cual es una falla de implementación.
+        // source: https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Identificaci%C3%B3n_Tributaria
+        if ($Z == 10) {
+            return static::cuit();
+        }
+
+        if ($Z == 11) {
+            $Z = 0;
+        }
+
+        return $AB . '-' . $dni . '-' . $Z;
     }
 }

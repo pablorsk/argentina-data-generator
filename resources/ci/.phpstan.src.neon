@@ -1,6 +1,5 @@
 includes:
 	- ../../vendor/phpstan/phpstan-strict-rules/rules.neon
-	- ../../vendor/weebly/phpstan-laravel/extension.neon
 
 parameters:
     bootstrap: %rootDir%/../../../resources/ci/tools/phpstan/bootstrap.php
@@ -10,6 +9,3 @@ parameters:
         # - '#Call to an undefined static method Illuminate\\Support\\Facades\\Route::\S.+().#'
         # JsonApi Library
         # - '#.+ErrorMutatorException::__construct\(\) does not.+#'
-        - '#Access to an undefined property.+Illuminate\\Database\\Eloquent\\Model::\$\S\.?#'
-        # ToDo
-        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Model::find\(\)#'
