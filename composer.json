@@ -10,6 +10,7 @@
     ],
     "type": "library",
     "minimum-stability": "stable",
+    "license": "MIT",
     "authors": [
         {
             "name": "Pablo Reyes",
