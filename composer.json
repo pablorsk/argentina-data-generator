@@ -34,13 +34,6 @@
             "ArgentinaDataGenerator\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Reyesoft\\JsonApi\\ServiceProvider"
-            ]
-        }
-    },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests"
