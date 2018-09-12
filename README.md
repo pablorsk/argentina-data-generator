@@ -10,18 +10,52 @@ Add the CompanyNameGenerator™ library to your `composer.json` file:
 
 ## Usage
 
+### No framework
+
 Use the new `ArgentinaDataGenerator\CuitFakerProvider` class in combination with [Faker](https://github.com/fzaninotto/Faker) to produce CUIT numbers.
 
     <?php
-
-    require __DIR__ .'/vendor/autoload.php';
-
     $faker = Faker\Factory::create();
-    $faker->addProvider(new ArgentinaDataGenerator\CuitFakerProvider($faker));
-    for ($i=0; $i < 20; $i++) {
-        echo $faker->cuitNumber, "\n";
+    $faker->addProvider(new \ArgentinaDataGenerator\CuitFakerProvider($faker));
+    for ($i=0; $i < 5; $i++) {
+        echo $faker->cuit, "\n";
     }
+    
+This snippet generates 5 awesome CUIT/CUIL valid numbers. Here is an example output from CuitFaker:
 
-This snippet generates 20 awesome CUIT/CUIL valid numbers. Here is an example output from CuitFaker:
+    20-48028763-1
+    33-25497340-3
+    33-35036407-8
+    20-12145175-2
+    33-37145386-0
+    
+### Laravel
 
-    20-30540300-4
+    php artisan make:provider FakerServiceProvider
+
+And modify app/Providers/FakerServiceProvider.php
+
+    <?php
+    namespace App\Providers;
+    
+    use Illuminate\Support\ServiceProvider;
+    
+    class FakerServiceProvider extends ServiceProvider
+    {
+        public function register()
+        {
+            $this->app->singleton('Faker', function($app) {
+                $faker = \Faker\Factory::create();
+                $faker->addProvider(\ArgentinaDataGenerator\CuitFakerProvider::class);
+                return $faker;
+            });
+        }
+    }
+    
+## Generators
+
+### \ArgentinaDataGenerator\CuitFakerProvider
+
+    cuit        // 33-37145386-0
+    cuitNumber  // 33371453860
+    dni         // 37145386
