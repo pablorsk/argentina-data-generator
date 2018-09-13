@@ -4,7 +4,7 @@ Generate CBU and CUIT/CUIL
 
 ## Installation
 
-Add the CompanyNameGenerator™ library to your `composer.json` file:
+Add the ArgentinaDataGenerator library to your `composer.json` file:
 
     composer require pablorsk/argentina-data-generator --dev
 
