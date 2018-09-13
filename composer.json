@@ -27,6 +27,7 @@
         "squizlabs/php_codesniffer": "3.3.0",
         "phpunit/phpunit": "7.2.6",
         "codedungeon/phpunit-result-printer": "0.19.10",
+        "pablorsk/cbu-validator-php": "^1.0",
         "sebastian/phpcpd": "4.0.0"
     },
     "autoload": {

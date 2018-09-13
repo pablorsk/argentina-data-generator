@@ -4,7 +4,7 @@ Generate CBU and CUIT/CUIL
 
 ## Installation
 
-Add the CompanyNameGenerator™ library to your `composer.json` file:
+Add the ArgentinaDataGenerator library to your `composer.json` file:
 
     composer require pablorsk/argentina-data-generator --dev
 
@@ -34,3 +34,7 @@ This snippet generates 5 awesome CUIT/CUIL valid numbers. Here is an example out
     cuit        // 33-37145386-0
     cuitNumber  // 33371453860
     dni         // 37145386
+    
+### \ArgentinaDataGenerator\CbuFakerProvider
+
+    cbu        // 6999444785661157353820
