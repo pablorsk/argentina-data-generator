@@ -10,8 +10,6 @@ Add the CompanyNameGenerator™ library to your `composer.json` file:
 
 ## Usage
 
-### No framework
-
 Use the new `ArgentinaDataGenerator\CuitFakerProvider` class in combination with [Faker](https://github.com/fzaninotto/Faker) to produce CUIT numbers.
 
     <?php
@@ -28,29 +26,6 @@ This snippet generates 5 awesome CUIT/CUIL valid numbers. Here is an example out
     33-35036407-8
     20-12145175-2
     33-37145386-0
-    
-### Laravel
-
-    php artisan make:provider FakerServiceProvider
-
-And modify app/Providers/FakerServiceProvider.php
-
-    <?php
-    namespace App\Providers;
-    
-    use Illuminate\Support\ServiceProvider;
-    
-    class FakerServiceProvider extends ServiceProvider
-    {
-        public function register()
-        {
-            $this->app->singleton('Faker', function($app) {
-                $faker = \Faker\Factory::create();
-                $faker->addProvider(\ArgentinaDataGenerator\CuitFakerProvider::class);
-                return $faker;
-            });
-        }
-    }
     
 ## Generators
 
