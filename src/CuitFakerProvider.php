@@ -1,9 +1,9 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 2018-2018 Pablo Reyes <pablo@reyesoft.com>.
  *
- * This file is part of JsonApiPlayground. JsonApiPlayground can not be copied and/or
- * distributed without the express permission of Reyesoft
+ * This file is part of ArgentinaDataGenerator. ArgentinaDataGenerator
+ * distributed under MIT Licence.
  */
 
 declare(strict_types=1);
@@ -54,11 +54,11 @@ class CuitFakerProvider extends Base
         // Si el resultado es 10, no existe, es un error. Se debe cambiar el tipo a 23 o 33 y recalcular.
         // Algunos algoritmos verifican erróneamente con 9 sin cambiar el tipo, lo cual es una falla de implementación.
         // source: https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Identificaci%C3%B3n_Tributaria
-        if ($Z == 10) {
+        if ($Z === 10) {
             return static::cuit();
         }
 
-        if ($Z == 11) {
+        if ($Z === 11) {
             $Z = 0;
         }
 

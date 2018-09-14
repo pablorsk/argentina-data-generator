@@ -1,9 +1,9 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 2018-2018 Pablo Reyes <pablo@reyesoft.com>.
  *
- * This file is part of JsonApiPlayground. JsonApiPlayground can not be copied and/or
- * distributed without the express permission of Reyesoft
+ * This file is part of ArgentinaDataGenerator. ArgentinaDataGenerator
+ * distributed under MIT Licence.
  */
 
 declare(strict_types=1);

@@ -1,9 +1,9 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 2018-2018 Pablo Reyes <pablo@reyesoft.com>.
  *
- * This file is part of JsonApiPlayground. JsonApiPlayground can not be copied and/or
- * distributed without the express permission of Reyesoft
+ * This file is part of ArgentinaDataGenerator. ArgentinaDataGenerator
+ * distributed under MIT Licence.
  */
 
 declare(strict_types=1);
@@ -30,7 +30,7 @@ class CbuFakerProvider extends Base
         $ponderador = [3, 1, 7, 9];
         $sum = 0;
         $j = 0;
-        for ($i = strlen($value) - 1; $i >= 0; --$i) {
+        for ($i = \strlen($value) - 1; $i >= 0; --$i) {
             $sum += ($value[$i] * $ponderador[$j % 4]);
             ++$j;
         }

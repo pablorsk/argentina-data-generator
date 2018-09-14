@@ -98,10 +98,10 @@ return PhpCsFixer\Config::create()
         */
         'header_comment' => [
             'header' =>
-                "Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.\n".
+                "Copyright (C) 2018-2018 Pablo Reyes <pablo@reyesoft.com>.\n".
                 "\n".
-                "This file is part of JsonApiPlayground. JsonApiPlayground can not be copied and/or\n".
-                "distributed without the express permission of Reyesoft",
+                "This file is part of ArgentinaDataValidator. ArgentinaDataValidator \n".
+                "distributed under MIT Licence.",
             'commentType' => 'PHPDoc',
             'location' => 'after_open',
             'separate' => 'bottom'

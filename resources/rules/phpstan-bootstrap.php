@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-$helper_meta_file = './resources/_ide_helper_meta.php';
+$helper_meta_file = './bootstrap/cache/_ide_helper_meta.php';
 if(!file_exists($helper_meta_file)) {
     exec('composer ide-helper');
 }

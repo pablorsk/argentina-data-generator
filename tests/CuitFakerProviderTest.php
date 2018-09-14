@@ -1,9 +1,9 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 2018-2018 Pablo Reyes <pablo@reyesoft.com>.
  *
- * This file is part of JsonApiPlayground. JsonApiPlayground can not be copied and/or
- * distributed without the express permission of Reyesoft
+ * This file is part of ArgentinaDataGenerator. ArgentinaDataGenerator
+ * distributed under MIT Licence.
  */
 
 declare(strict_types=1);
@@ -36,7 +36,7 @@ class CuitFakerProviderTest extends TestCase
     {
         $cuit = (string) $number_cuit;
 
-        if (strlen($cuit) !== 11) {
+        if (\strlen($cuit) !== 11) {
             return false;
         }
 
@@ -46,8 +46,8 @@ class CuitFakerProviderTest extends TestCase
         }
 
         $checksum = 11 - ($result % 11);
-        $checksum = $checksum == 11 ? 0 : $checksum;
+        $checksum = $checksum === 11 ? 0 : $checksum;
 
-        return $checksum == $cuit[-1];
+        return $checksum === $cuit[-1];
     }
 }
