@@ -30,7 +30,7 @@ class CbuFakerProvider extends Base
         $ponderador = [3, 1, 7, 9];
         $sum = 0;
         $j = 0;
-        for ($i = strlen($value) - 1; $i >= 0; --$i) {
+        for ($i = \strlen($value) - 1; $i >= 0; --$i) {
             $sum += ($value[$i] * $ponderador[$j % 4]);
             ++$j;
         }

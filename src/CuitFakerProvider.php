@@ -54,11 +54,11 @@ class CuitFakerProvider extends Base
         // Si el resultado es 10, no existe, es un error. Se debe cambiar el tipo a 23 o 33 y recalcular.
         // Algunos algoritmos verifican erróneamente con 9 sin cambiar el tipo, lo cual es una falla de implementación.
         // source: https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Identificaci%C3%B3n_Tributaria
-        if ($Z == 10) {
+        if ($Z === 10) {
             return static::cuit();
         }
 
-        if ($Z == 11) {
+        if ($Z === 11) {
             $Z = 0;
         }
 

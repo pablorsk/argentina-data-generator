@@ -36,7 +36,7 @@ class CuitFakerProviderTest extends TestCase
     {
         $cuit = (string) $number_cuit;
 
-        if (strlen($cuit) !== 11) {
+        if (\strlen($cuit) !== 11) {
             return false;
         }
 
@@ -46,8 +46,8 @@ class CuitFakerProviderTest extends TestCase
         }
 
         $checksum = 11 - ($result % 11);
-        $checksum = $checksum == 11 ? 0 : $checksum;
+        $checksum = $checksum === 11 ? 0 : $checksum;
 
-        return $checksum == $cuit[-1];
+        return $checksum === $cuit[-1];
     }
 }
