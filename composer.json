@@ -3,10 +3,11 @@
     "description": "Argentina data generator for CUIT and CBU numbers",
     "homepage": "https://github.com/pablorsk/argentina-data-generator",
     "keywords": [
-        "reyesoft",
         "laravel",
-        "jsonapi",
-        "json-api"
+        "faker",
+        "argentina",
+        "cuit",
+        "cbu"
     ],
     "type": "library",
     "minimum-stability": "stable",
