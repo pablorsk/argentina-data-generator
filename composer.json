@@ -20,16 +20,15 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
-        "fzaninotto/faker": "~1.4"
+        "php": ">=7.1|8.0",
+        "fakerphp/faker": "1.14.1"
     },
     "require-dev": {
-        "reyesoft/ci": "1.0.5",
-        "squizlabs/php_codesniffer": "3.3.0",
-        "phpunit/phpunit": "7.2.6",
-        "codedungeon/phpunit-result-printer": "0.19.10",
+        "reyesoft/ci": "1.4.3",
+        "phpunit/phpunit": "9.5.5",
+        "codedungeon/phpunit-result-printer": "0.30.1",
         "pablorsk/cbu-validator-php": "^1.0",
-        "sebastian/phpcpd": "4.0.0"
+        "sebastian/phpcpd": "6.0.3"
     },
     "autoload": {
         "psr-4": {
